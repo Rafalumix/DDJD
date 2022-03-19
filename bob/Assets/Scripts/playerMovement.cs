@@ -1,10 +1,15 @@
 using UnityEngine;
 
+
 public class playerMovement : MonoBehaviour
 {
 
     public float flight = 50.0f;
     public float forwardMovementSpeed = 3.0f;
+    private uint coins = 0;
+    public UnityEngine.UI.Text coinsCollectedLabel;
+
+
 
     private Rigidbody2D playerRigidbody;
 
@@ -34,5 +39,23 @@ public class playerMovement : MonoBehaviour
         newVelocity.x = forwardMovementSpeed;
         playerRigidbody.velocity = newVelocity;
     }
-    
+
+    void CollectCoin(Collider2D coinCollider)
+    {
+        coins++;
+        coinsCollectedLabel.text = coins.ToString() + " ECTS"; 
+        Destroy(coinCollider.gameObject);
+    }
+
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.gameObject.CompareTag("Collectible"))
+        {
+            CollectCoin(collider);
+        }
+        //Collision with obstacles!
+        // else {
+        //     coins = 0;
+        // }
+    }
 }
