@@ -17,7 +17,6 @@ public class EnemyGenerator : MonoBehaviour
 
     void AddEnemy(float lastEnemyX)
     {
-        Debug.Log("yo");
         //1
         int randomIndex = Random.Range(0, availableEnemies.Length);
         //2
@@ -35,8 +34,8 @@ public class EnemyGenerator : MonoBehaviour
     {
         //1
         float playerX = transform.position.x;
-        float removeEnemyX = playerX - screenWidthInPoints;
-        float addEnemyX = playerX + screenWidthInPoints;
+        float leftWall = playerX - screenWidthInPoints;
+        float rightWall = playerX + screenWidthInPoints;
         float farthestEnemyX = 0;
         //2
         List<GameObject> enemiesToRemove = new List<GameObject>();
@@ -47,7 +46,7 @@ public class EnemyGenerator : MonoBehaviour
             //4
             farthestEnemyX = Mathf.Max(farthestEnemyX, enemyX);
             //5
-            if (enemyX < removeEnemyX) 
+            if (enemyX < leftWall) 
             {           
                 enemiesToRemove.Add(enemy);
             }
@@ -59,7 +58,7 @@ public class EnemyGenerator : MonoBehaviour
             Destroy(enemy);
         }
         //7
-        if (farthestEnemyX < addEnemyX && enemies.Count < 3)
+        if (farthestEnemyX < rightWall && enemies.Count < 3)
         {
             AddEnemy(farthestEnemyX);
         }
@@ -82,11 +81,11 @@ public class EnemyGenerator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("yo");
+
     }
 
     void FixedUpdate()
     {
-        Debug.Log("yo");
+
     }
 }
