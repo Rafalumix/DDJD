@@ -7,7 +7,11 @@ public class playerMovement : MonoBehaviour
     public float flight = 50.0f;
     public float forwardMovementSpeed = 3.0f;
     private uint coins = 0;
+    private float score = 0;
+    private float lastPosition;
+    private float totalDistance;
     public UnityEngine.UI.Text coinsCollectedLabel;
+    public UnityEngine.UI.Text ScoreLabel;
 
 
 
@@ -19,13 +23,18 @@ public class playerMovement : MonoBehaviour
     void Start()
     {
         playerRigidbody = GetComponent<Rigidbody2D>();
-        
+        lastPosition = 0;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        float distance = transform.position.x - lastPosition;
+        totalDistance += distance;
+        lastPosition = transform.position.x;
+        score += distance;
+        ScoreLabel.text = "Score: " + ((uint) score).ToString();
     }
 
     void FixedUpdate()
@@ -44,6 +53,7 @@ public class playerMovement : MonoBehaviour
     {
         coins++;
         coinsCollectedLabel.text = coins.ToString() + " ECTS"; 
+        score += 10;
         Destroy(coinCollider.gameObject);
     }
 

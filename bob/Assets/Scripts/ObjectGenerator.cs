@@ -11,8 +11,8 @@ public class ObjectGenerator : MonoBehaviour
     public float objectsMinDistance = 5.0f;
     public float objectsMaxDistance = 10.0f;
 
-    public float objectsMinY = -1.4f;
-    public float objectsMaxY = 1.4f;
+    public float objectsMinY = -4;
+    public float objectsMaxY = 4;
 
     public float objectsMinRotation = -45.0f;
     public float objectsMaxRotation = 45.0f;
@@ -56,7 +56,6 @@ public class ObjectGenerator : MonoBehaviour
         obj.transform.position = new Vector3(objectPositionX,randomY,0); 
         //4
         float rotation = Random.Range(objectsMinRotation, objectsMaxRotation);
-        // obj.transform.rotation = Quaternion.Euler(Vector3.forward * rotation);
         //5
         objects.Add(obj);            
     }
