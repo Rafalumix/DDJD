@@ -862,11 +862,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   availableEnemies:
   - {fileID: 5385970171809302981, guid: 78fb282807386bf4d80f894693d725d3, type: 3}
-  enemies: []
+  maxEnemies: 3
   enemyMinDistance: 5
   enemyMaxDistance: 10
-  enemyMinY: -3.5
-  enemyMaxY: 3.5
+  enemyMinY: -4
+  enemyMaxY: 4
+  minYBetweenEnemies: 1
 --- !u!1001 &6560802253779913226
 PrefabInstance:
   m_ObjectHideFlags: 0

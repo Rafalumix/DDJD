@@ -6,13 +6,17 @@ public class EnemyGenerator : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject[] availableEnemies;
-    public List<GameObject> enemies;
+    private List<GameObject> enemies = new List<GameObject>();
+
+    public int maxEnemies = 3;
 
     public float enemyMinDistance = 5.0f;
     public float enemyMaxDistance = 10.0f;
 
-    public float enemyMinY = -1.4f;
-    public float enemyMaxY = 1.4f;
+    public float enemyMinY = -4f;
+    public float enemyMaxY = 4f;
+
+    public float minYBetweenEnemies = 1.0f;
     private float screenWidthInPoints;
 
     void AddEnemy(float lastEnemyX)
@@ -23,7 +27,23 @@ public class EnemyGenerator : MonoBehaviour
         GameObject obj = (GameObject)Instantiate(availableEnemies[randomIndex]);
         //3
         float enemyPositionX = lastEnemyX + Random.Range(enemyMinDistance, enemyMaxDistance);
-        float randomY = Random.Range(enemyMinY, enemyMaxY);
+
+        bool tryAgain = true;
+        float randomY = 0;
+
+        while(tryAgain){
+            tryAgain = false;
+            randomY = Random.Range(enemyMinY, enemyMaxY);
+            foreach(var enemy in enemies)
+            {
+                if( Mathf.Abs(enemy.transform.position.y - randomY)<minYBetweenEnemies)
+                {
+                    tryAgain = true;
+                    break;
+                }
+            }
+        }
+        
         obj.transform.position = new Vector3(enemyPositionX,randomY,0); 
 
         //5
@@ -58,7 +78,7 @@ public class EnemyGenerator : MonoBehaviour
             Destroy(enemy);
         }
         //7
-        if (farthestEnemyX < rightWall && enemies.Count < 3)
+        if (farthestEnemyX < rightWall && enemies.Count < maxEnemies)
         {
             AddEnemy(farthestEnemyX);
         }
