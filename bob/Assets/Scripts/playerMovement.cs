@@ -35,6 +35,8 @@ public class playerMovement : MonoBehaviour
         lastPosition = transform.position.x;
         score += distance;
         ScoreLabel.text = "Score: " + ((uint) score).ToString();
+        coinsCollectedLabel.text = coins.ToString() + " ECTS"; 
+
     }
 
     void FixedUpdate()
@@ -52,7 +54,6 @@ public class playerMovement : MonoBehaviour
     void CollectCoin(Collider2D coinCollider)
     {
         coins++;
-        coinsCollectedLabel.text = coins.ToString() + " ECTS"; 
         score += 10;
         Destroy(coinCollider.gameObject);
     }
@@ -63,9 +64,9 @@ public class playerMovement : MonoBehaviour
         {
             CollectCoin(collider);
         }
-        //Collision with obstacles!
-        // else {
-        //     coins = 0;
-        // }
+        // Collision with obstacles!
+        else {
+            coins = 0;
+        }
     }
 }

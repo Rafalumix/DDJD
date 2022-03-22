@@ -7,7 +7,7 @@ public class Obstacle : MonoBehaviour
 
 
     public float rotationSpeed = 0.0f;
-    public float obstacleSpeed = -0.001f;
+    public float obstacleSpeed = -0.0005f;
     private Collider2D laserCollider;
     private SpriteRenderer laserRenderer;
 
