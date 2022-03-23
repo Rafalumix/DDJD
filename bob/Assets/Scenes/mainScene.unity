@@ -755,6 +755,7 @@ GameObject:
   - component: {fileID: 2127040769}
   - component: {fileID: 2127040770}
   - component: {fileID: 2127040771}
+  - component: {fileID: 2127040772}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -932,6 +933,26 @@ MonoBehaviour:
   objectsMaxY: 3.5
   objectsMinRotation: -45
   objectsMaxRotation: 45
+--- !u!114 &2127040772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2127040764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87f0bfd73dbbbe94f894ce727c05f3a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  availableEnemies:
+  - {fileID: 5385970171809302981, guid: 78fb282807386bf4d80f894693d725d3, type: 3}
+  maxEnemies: 3
+  enemyMinDistance: 5
+  enemyMaxDistance: 10
+  enemyMinY: -4
+  enemyMaxY: 4
+  minYBetweenEnemies: 1
 --- !u!1001 &6560802253779913226
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -4,8 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Collectible
   - Obstacle
+  - Collectible
+  - Enemy
+  - Projectile
   layers:
   - Default
   - TransparentFX
@@ -13,8 +15,8 @@ TagManager:
   - Objects
   - Water
   - UI
-  - 
-  - 
+  - Enemy
+  - Projectile
   - 
   - 
   - 
