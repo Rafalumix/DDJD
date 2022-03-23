@@ -1317,7 +1317,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 50
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -1342,7 +1342,7 @@ MonoBehaviour:
   maxHealth: 100
   healthBar: {fileID: 250705654}
   restartButton: {fileID: 526038277}
-  flight: 75
+  flight: 1250
   forwardMovementSpeed: 3
   coinsCollectedLabel: {fileID: 996347169}
   ScoreLabel: {fileID: 1600326029}
