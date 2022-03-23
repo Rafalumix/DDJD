@@ -86,7 +86,7 @@ public class playerMovement : MonoBehaviour
             CollectCoin(collider);
         }
         // Collision with obstacles!
-        else if (collider.gameObject.CompareTag("Obstacle"))
+        else if (collider.gameObject.CompareTag("Obstacle") || collider.gameObject.CompareTag("Trap") || collider.gameObject.CompareTag("Projectile") )
         {
             HitByObstacle(collider); 
         }
@@ -115,6 +115,10 @@ public class playerMovement : MonoBehaviour
     {
         //We will use this one when Bob die reaching 0hp, now just for testing
         TakeDamage(); 
+        if (laserCollider.gameObject.CompareTag("Projectile") )
+        {
+            Destroy(laserCollider.gameObject);
+        }
         //isDead = true;
         //AnimatorSon.SetBool("isDead", true);
     }
