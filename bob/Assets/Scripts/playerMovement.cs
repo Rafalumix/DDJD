@@ -66,7 +66,7 @@ public class playerMovement : MonoBehaviour
         }
         // Collision with obstacles!
         else {
-            coins = 0;
+            // coins = 0;
         }
     }
 }

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6984151078600943383}
   m_Layer: 0
   m_Name: VendingMachine
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
