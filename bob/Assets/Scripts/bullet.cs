@@ -16,6 +16,16 @@ public class bullet : MonoBehaviour
         bulletRigidBody.velocity = transform.right * speed; 
     }
 
+    void FixedUpdate() 
+    {
+        float playerPos = GameObject.Find("Player").transform.position.x;
+        if (bulletRigidBody.gameObject.transform.position.x - playerPos >= 15){
+            Destroy(gameObject);
+        }
+
+
+    }
+
     void OnTriggerEnter2D (Collider2D hitInfo){
         if (hitInfo.gameObject.CompareTag("Enemy") || hitInfo.gameObject.CompareTag("Obstacle") )
         {
