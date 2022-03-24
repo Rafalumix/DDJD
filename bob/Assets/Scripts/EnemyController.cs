@@ -51,14 +51,21 @@ public class EnemyController : MonoBehaviour
         List<GameObject> projectilesToRemove = new List<GameObject>();
         foreach (var projec in projectiles)
         {
-            //3
-            float projecX = projec.transform.position.x;
-
-            //5
-            if (projecX < leftWall) 
-            {           
+            
+            if (projec.gameObject == null){
                 projectilesToRemove.Add(projec);
             }
+            else{
+                //3
+                float projecX = projec.transform.position.x;
+
+                //5
+                if (projecX < leftWall) 
+                {           
+                    projectilesToRemove.Add(projec);
+            }
+            }
+            
         }
         //6
         foreach (var projec in projectilesToRemove)
@@ -76,9 +83,6 @@ public class EnemyController : MonoBehaviour
             StartCoroutine(LaunchAttack(2));
 
         }
-        // Rigidbody instance = Instantiate(projectile);
-
-        // instance.velocity = Random.insideUnitSphere * 5;
     }
 
     IEnumerator LaunchAttack(float time)
@@ -86,6 +90,8 @@ public class EnemyController : MonoBehaviour
         yield return new WaitForSeconds(time);
 
         GameObject newProjectile = Instantiate(projectile,target.transform.position,target.transform.rotation);
+
+        projectiles.Add(newProjectile);
 
         target.GetComponent<Animator>().Play("enemy1_idle");
         
