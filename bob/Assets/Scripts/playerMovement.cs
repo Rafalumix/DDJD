@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Collections.Generic; 
+using System.Collections;
 using UnityEngine.UI;
 
 public class playerMovement : MonoBehaviour
@@ -25,7 +25,7 @@ public class playerMovement : MonoBehaviour
     public Transform groundCheckTransform;
     private bool isGrounded;
     public LayerMask groundCheckLayerMask;
-    public bool isDead = false; 
+    public bool isDead = false;
 
     private Rigidbody2D playerRigidbody;
 
@@ -46,8 +46,8 @@ public class playerMovement : MonoBehaviour
         totalDistance += distance;
         lastPosition = transform.position.x;
         score += distance;
-        ScoreLabel.text = "Score: " + ((uint) score).ToString();
-        coinsCollectedLabel.text = coins.ToString() + " ECTS"; 
+        ScoreLabel.text = "Score: " + ((uint)score).ToString();
+        coinsCollectedLabel.text = coins.ToString() + " ECTS";
         UpdateGroundedStatus();
 
     }
@@ -55,12 +55,13 @@ public class playerMovement : MonoBehaviour
     void FixedUpdate()
     {
         UpdateGroundedStatus();
-        if (isDead == false){
-        if (Input.GetButton("Jump"))
+        if (isDead == false)
         {
-            playerRigidbody.AddForce(new Vector2(0, flight));
-        }
-        
+            if (Input.GetButton("Jump"))
+            {
+                playerRigidbody.AddForce(new Vector2(0, flight));
+            }
+
             Vector2 newVelocity = playerRigidbody.velocity;
             newVelocity.x = forwardMovementSpeed;
             playerRigidbody.velocity = newVelocity;
@@ -69,7 +70,7 @@ public class playerMovement : MonoBehaviour
         {
             restartButton.gameObject.SetActive(true);
         }
-        
+
     }
 
     void CollectCoin(Collider2D coinCollider)
@@ -86,11 +87,12 @@ public class playerMovement : MonoBehaviour
             CollectCoin(collider);
         }
         // Collision with obstacles!
-        else if (collider.gameObject.CompareTag("Obstacle") || collider.gameObject.CompareTag("Trap") || collider.gameObject.CompareTag("Projectile") )
+        else if (collider.gameObject.CompareTag("Obstacle") || collider.gameObject.CompareTag("Trap") || collider.gameObject.CompareTag("Projectile"))
         {
-            HitByObstacle(collider); 
+            HitByObstacle(collider);
         }
-        else {
+        else
+        {
             // coins = 0;
         }
         //Collision with obstacles!
@@ -100,31 +102,43 @@ public class playerMovement : MonoBehaviour
     }
 
     void UpdateGroundedStatus()
-{
-    isGrounded = Physics2D.OverlapCircle(groundCheckTransform.position, 0.15f, groundCheckLayerMask);
-    AnimatorSon.SetBool("isGrounded", isGrounded);
-}
+    {
+        isGrounded = Physics2D.OverlapCircle(groundCheckTransform.position, 0.15f, groundCheckLayerMask);
+        AnimatorSon.SetBool("isGrounded", isGrounded);
+    }
 
-    public void TakeDamage(){
-    
-    health -= 25 ;            
-    healthBar.UpdateHealthBar();
-}
+    public void TakeDamage()
+    {
+
+        health -= 25;
+        AnimatorSon.SetBool("wasDamaged", true);
+        healthBar.UpdateHealthBar();
+        StartCoroutine(RemoveHitStatus());
+    }
+    IEnumerator RemoveHitStatus()
+    {
+        yield return new WaitForSeconds(1);
+        AnimatorSon.SetBool("wasDamaged", false);
+    }
 
     void HitByObstacle(Collider2D laserCollider)
     {
-        //We will use this one when Bob die reaching 0hp, now just for testing
-        TakeDamage(); 
-        if (laserCollider.gameObject.CompareTag("Projectile") )
+        if (AnimatorSon.GetBool("wasDamaged") == false)
         {
-            Destroy(laserCollider.gameObject);
+            //We will use this one when Bob die reaching 0hp, now just for testing
+            TakeDamage();
+            if (laserCollider.gameObject.CompareTag("Projectile"))
+            {
+                Destroy(laserCollider.gameObject);
+            }
+            //isDead = true;
+            //AnimatorSon.SetBool("isDead", true);
         }
-        //isDead = true;
-        //AnimatorSon.SetBool("isDead", true);
     }
 
     public void RestartGame()
-{
-    SceneManager.LoadScene("mainScene");
-}}
+    {
+        SceneManager.LoadScene("mainScene");
+    }
+}
 
