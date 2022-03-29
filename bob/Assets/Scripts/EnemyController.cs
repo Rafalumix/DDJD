@@ -5,10 +5,10 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     // Start is called before the first frame update
-    public EnemyGenerator enemyGenerator; 
-
     public GameObject target; 
     private Animator anim;  
+    public GameObject floatingPoints;
+    private bool isAlive;
 
     public GameObject projectile;
     public float playerDefaultSpeed = 3.0f;
@@ -24,6 +24,7 @@ public class EnemyController : MonoBehaviour
 
     void Start()
     {
+        isAlive = true; 
         float height = 2.0f * Camera.main.orthographicSize;
         screenWidthInPoints = height * Camera.main.aspect;
         anim = GetComponent<Animator>(); 
@@ -33,9 +34,6 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (health <= 0){
-            Die(); 
-        }
     }
 
     void FixedUpdate()
@@ -43,6 +41,7 @@ public class EnemyController : MonoBehaviour
         if (health <= 0){
             Die(); 
         }
+        if(isAlive==true){
         float playerPos = GameObject.Find("Player").transform.position.x;
         float leftWall = playerPos - screenWidthInPoints;
 
@@ -82,6 +81,7 @@ public class EnemyController : MonoBehaviour
             projectiles.Remove(projec);
             Destroy(projec);
         }
+        }
     }
 
     void PrepareAttack()
@@ -107,19 +107,23 @@ public class EnemyController : MonoBehaviour
     }
     public void TakeDamage (int damage)
 {
-         health -= damage; 
+        if(isAlive==true){
+         Instantiate(floatingPoints, transform.position, Quaternion.identity); 
+        health -= damage;    
+        }
+        
 }
 
 void Die(){
     if (gameObject!=null){
-       anim.SetBool("isDead", true);  
-       DestroyObject();   
+       anim.SetBool("isDead", true); 
+       isAlive=false; 
     }
     
 }
 
-void DestroyObject(){
-    Debug.Log("Hello: " + gameObject.name);
+public void DestroyObject(){
+    //Debug.Log("Hello: " + gameObject.name);
     Destroy(gameObject);
 }
 
