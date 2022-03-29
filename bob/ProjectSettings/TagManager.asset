@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Projectile
   - Trap
+  - Powerup
   layers:
   - Default
   - TransparentFX
@@ -18,8 +19,8 @@ TagManager:
   - UI
   - Enemy
   - Projectile
-  - 
-  - 
+  - Obstacle
+  - Floor
   - 
   - 
   - 
