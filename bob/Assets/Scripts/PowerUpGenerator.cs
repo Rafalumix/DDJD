@@ -7,6 +7,7 @@ public class PowerUpGenerator : MonoBehaviour
 // Start is called before the first frame update
     public GameObject healthPack;
     public GameObject WindPowerup;
+    public GameObject MultiThreadPowerup;
     private GameObject player;
     public float distanceRespawn;
     private float screenWidthInPoints;
@@ -66,6 +67,14 @@ public class PowerUpGenerator : MonoBehaviour
             obj.transform.position = new Vector3(currentPosition + 100, randomY,0);
             powerups.Add(obj);
             once = false;
+        }
+
+        if ((int)currentPosition % 50 == 0)
+        {
+            GameObject obj = (GameObject)Instantiate(MultiThreadPowerup);
+            float randomY = Random.Range(player.GetComponent<ObjectGenerator>().objectsMinY, player.GetComponent<ObjectGenerator>().objectsMaxY);
+            obj.transform.position = new Vector3(currentPosition + 20, randomY,0);
+            powerups.Add(obj);
         }
 
     }

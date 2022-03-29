@@ -82,6 +82,8 @@ public class playerMovement : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider)
     {
+        print("hello");
+        print(collider.gameObject.tag);
         if (collider.gameObject.CompareTag("Collectible"))
         {
             CollectCoin(collider);
@@ -92,6 +94,14 @@ public class playerMovement : MonoBehaviour
             HitByObstacle(collider);
         }
     }
+    private void OnCollisionEnter2D(Collision2D collider) 
+    {
+        if (collider.gameObject.CompareTag("Obstacle"))
+        {
+            TakeDamage(5);
+            collider.gameObject.GetComponent<Rigidbody2D>().AddForce(10*Vector2.up);
+        }
+    }
 
     void UpdateGroundedStatus()
     {
@@ -99,10 +109,10 @@ public class playerMovement : MonoBehaviour
         AnimatorSon.SetBool("isGrounded", isGrounded);
     }
 
-    public void TakeDamage()
+    public void TakeDamage(float damage)
     {
 
-        health -= 25;
+        health -= damage;
         AnimatorSon.SetBool("wasDamaged", true);
         healthBar.UpdateHealthBar();
         StartCoroutine(RemoveHitStatus());
@@ -126,7 +136,7 @@ public class playerMovement : MonoBehaviour
         if (AnimatorSon.GetBool("wasDamaged") == false)
         {
             //We will use this one when Bob die reaching 0hp, now just for testing
-            TakeDamage();
+            TakeDamage(25);
             if (laserCollider.gameObject.CompareTag("Projectile"))
             {
                 Destroy(laserCollider.gameObject);

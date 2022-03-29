@@ -8,6 +8,7 @@ public class WindPush : MonoBehaviour
 {
     private GameObject player;
     private List<Collider2D> collisions = new List<Collider2D>();
+    public LayerMask obstacleMask;
 
     public float cooldownTime;
     private float nextFireTime;
@@ -57,13 +58,13 @@ public class WindPush : MonoBehaviour
     int Push()
     {   
         Vector2 position = this.player.transform.position;
-        Collider2D[] results = Physics2D.OverlapCircleAll(position,5,(1<<8));
+        Collider2D[] results = Physics2D.OverlapCircleAll(position,5, obstacleMask);
+        
         foreach (var result in results) {
-            if(result.CompareTag("Obstacle")){
-                Vector2 direction = result.transform.position - transform.position;
-                result.gameObject.tag = "Projectile";
-                result.gameObject.GetComponent<Rigidbody2D>().AddForce(500*direction);
-            }
+            Vector2 direction = result.transform.position - transform.position;
+            result.gameObject.tag = "Projectile";
+            result.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            result.gameObject.GetComponent<Rigidbody2D>().AddForce(200*direction);
         }
         return results.Length;
     }

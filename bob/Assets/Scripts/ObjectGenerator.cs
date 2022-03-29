@@ -40,7 +40,7 @@ public class ObjectGenerator : MonoBehaviour
         while (true)
         {
             GenerateObjectsIfRequired();
-            yield return new WaitForSeconds(0.25f);
+            yield return new WaitForSeconds(0.5f);
         }
     }
 
