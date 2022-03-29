@@ -5,7 +5,10 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     // Start is called before the first frame update
+    public EnemyGenerator enemyGenerator; 
+
     public GameObject target; 
+    private Animator anim;  
 
     public GameObject projectile;
     public float playerDefaultSpeed = 3.0f;
@@ -17,21 +20,29 @@ public class EnemyController : MonoBehaviour
 
     private float screenWidthInPoints;
 
+    public int health = 100; 
+
     void Start()
     {
         float height = 2.0f * Camera.main.orthographicSize;
         screenWidthInPoints = height * Camera.main.aspect;
+        anim = GetComponent<Animator>(); 
         InvokeRepeating("PrepareAttack",2.0f,timeBetweenProjectiles);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (health <= 0){
+            Die(); 
+        }
     }
 
     void FixedUpdate()
     {
+        if (health <= 0){
+            Die(); 
+        }
         float playerPos = GameObject.Find("Player").transform.position.x;
         float leftWall = playerPos - screenWidthInPoints;
 
@@ -39,8 +50,6 @@ public class EnemyController : MonoBehaviour
         if(target.transform.position.x - playerPos <= 9){ 
             targetOnScreen = true;
             target.transform.Translate(Vector3.right * playerDefaultSpeed * Time.deltaTime); //move enemy
-
-
         }
         else{
             targetOnScreen = false;
@@ -96,4 +105,23 @@ public class EnemyController : MonoBehaviour
         target.GetComponent<Animator>().Play("enemy1_idle");
         
     }
+    public void TakeDamage (int damage)
+{
+         health -= damage; 
 }
+
+void Die(){
+    if (gameObject!=null){
+       anim.SetBool("isDead", true);  
+       DestroyObject();   
+    }
+    
+}
+
+void DestroyObject(){
+    Debug.Log("Hello: " + gameObject.name);
+    Destroy(gameObject);
+}
+
+}
+

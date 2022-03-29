@@ -61,7 +61,8 @@ public class EnemyGenerator : MonoBehaviour
         List<GameObject> enemiesToRemove = new List<GameObject>();
         foreach (var enemy in enemies)
         {
-            //3
+            if (enemy!=null){
+               //3
             float enemyX = enemy.transform.position.x;
             //4
             farthestEnemyX = Mathf.Max(farthestEnemyX, enemyX);
@@ -69,13 +70,20 @@ public class EnemyGenerator : MonoBehaviour
             if (enemyX < leftWall) 
             {           
                 enemiesToRemove.Add(enemy);
+            } 
+            } else {
+                enemiesToRemove.Add(enemy); 
             }
+            
         }
         //6
         foreach (var enemy in enemiesToRemove)
         {
-            enemies.Remove(enemy);
-            Destroy(enemy);
+            enemies.Remove(enemy); 
+            if (enemy!=null){
+                Destroy(enemy);
+            }
+            
         }
         //7
         if (farthestEnemyX < rightWall && enemies.Count < maxEnemies)
