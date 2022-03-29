@@ -21,10 +21,24 @@ public class MovingObstacle : MonoBehaviour
 
     void FixedUpdate()
     {
+        if(transform.CompareTag("Obstacle"))
+        {
+            Vector2 newVelocity = obstacle.velocity;
+            newVelocity.x = forwardMovementSpeed;
+            obstacle.velocity = newVelocity;
+            transform.Rotate(0,0,50*Time.deltaTime);
+        }
+    }
 
-        Vector2 newVelocity = obstacle.velocity;
-        newVelocity.x = forwardMovementSpeed;
-        obstacle.velocity = newVelocity;
-        transform.Rotate(0,0,50*Time.deltaTime);
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if(transform.CompareTag("Projectile")) 
+        {
+            if (collider.gameObject.CompareTag("Enemy") || collider.gameObject.CompareTag("Trap") || collider.gameObject.CompareTag("Projectile") )
+            {   
+                GameObject enemy = collider.gameObject;
+                Destroy(enemy);
+            }
+        }
     }
 }

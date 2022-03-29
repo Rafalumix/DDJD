@@ -71,21 +71,27 @@ public class ObjectGenerator : MonoBehaviour
         List<GameObject> objectsToRemove = new List<GameObject>();
         foreach (var obj in objects)
         {
-            //3
-            float objX = obj.transform.position.x;
-            //4
-            farthestObjectX = Mathf.Max(farthestObjectX, objX);
-            //5
-            if (objX < removeObjectsX) 
-            {           
-                objectsToRemove.Add(obj);
+            if(obj) 
+            {
+                //3
+                float objX = obj.transform.position.x;
+                //4
+                farthestObjectX = Mathf.Max(farthestObjectX, objX);
+                //5
+                if (objX < removeObjectsX || objX > playerX + 20) 
+                {           
+                    objectsToRemove.Add(obj);
+                }
             }
+            else 
+                objectsToRemove.Add(obj);
         }
         //6
         foreach (var obj in objectsToRemove)
         {
             objects.Remove(obj);
-            Destroy(obj);
+            if(obj)
+                Destroy(obj);
         }
         //7
         if (farthestObjectX < addObjectX)

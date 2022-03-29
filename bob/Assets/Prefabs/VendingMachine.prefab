@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3996086272086107040}
   - component: {fileID: 4475218895043786735}
   - component: {fileID: 6984151078600943383}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: VendingMachine
   m_TagString: Obstacle
   m_Icon: {fileID: 0}

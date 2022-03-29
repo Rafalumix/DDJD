@@ -123,4 +123,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HealthPackObject: {fileID: 1973759380768976501}
-  distanceRespawn: 0

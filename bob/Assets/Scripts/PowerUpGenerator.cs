@@ -6,10 +6,13 @@ public class PowerUpGenerator : MonoBehaviour
 {
 // Start is called before the first frame update
     public GameObject healthPack;
+    public GameObject WindPowerup;
     private GameObject player;
     public float distanceRespawn;
     private float screenWidthInPoints;
+    private bool once = true;
 
+    
 
     private List<GameObject> powerups = new List<GameObject>();
 
@@ -32,7 +35,6 @@ public class PowerUpGenerator : MonoBehaviour
                 if (powerupX < leftWall) 
                 {           
                     PowerupsToRemove.Add(powerup);
-                    print("delete");
                 }
             }
             else {
@@ -44,18 +46,28 @@ public class PowerUpGenerator : MonoBehaviour
         {
             powerups.Remove(powerup);
             Destroy(powerup);
+            once = true;
         }
 
         //generate healthpack
         float currentPosition = this.player.transform.position.x;
         if((int)currentPosition % distanceRespawn == 0)
         {
-            print(currentPosition);
             GameObject obj = (GameObject)Instantiate(healthPack);
             float randomY = Random.Range(player.GetComponent<ObjectGenerator>().objectsMinY, player.GetComponent<ObjectGenerator>().objectsMaxY);
             obj.transform.position = new Vector3(currentPosition + 10, randomY,0);
             powerups.Add(obj);
         }
+        
+        if (once && (int)currentPosition % 100 == 0 && player.gameObject.GetComponent<WindPush>().pickedUp == false)
+        {
+            GameObject obj = (GameObject)Instantiate(WindPowerup);
+            float randomY = Random.Range(player.GetComponent<ObjectGenerator>().objectsMinY, player.GetComponent<ObjectGenerator>().objectsMaxY);
+            obj.transform.position = new Vector3(currentPosition + 100, randomY,0);
+            powerups.Add(obj);
+            once = false;
+        }
+
     }
 
     void Start()
@@ -71,7 +83,7 @@ public class PowerUpGenerator : MonoBehaviour
         while (true)
         {
             GeneratePowerupsIfRequired();
-            yield return new WaitForSeconds(0.25f);
+            yield return new WaitForSeconds(0.5f);
             
         }
     }

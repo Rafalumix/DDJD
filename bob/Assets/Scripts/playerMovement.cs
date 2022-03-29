@@ -131,8 +131,8 @@ public class playerMovement : MonoBehaviour
             {
                 Destroy(laserCollider.gameObject);
             }
-            //isDead = true;
-            //AnimatorSon.SetBool("isDead", true);
+            // isDead = true;
+            // AnimatorSon.SetBool("isDead", true);
         }
     }
 
