@@ -82,8 +82,6 @@ public class playerMovement : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        print("hello");
-        print(collider.gameObject.tag);
         if (collider.gameObject.CompareTag("Collectible"))
         {
             CollectCoin(collider);
