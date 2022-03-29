@@ -115,6 +115,7 @@ public class playerMovement : MonoBehaviour
         health -= damage;
         AnimatorSon.SetBool("wasDamaged", true);
         healthBar.UpdateHealthBar();
+        CameraShake.Shake(0.3f, 0.05f);        
         StartCoroutine(RemoveHitStatus());
     }
 
