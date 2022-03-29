@@ -91,14 +91,6 @@ public class playerMovement : MonoBehaviour
         {
             HitByObstacle(collider);
         }
-        else
-        {
-            // coins = 0;
-        }
-        //Collision with obstacles!
-        // else {
-        //     coins = 0;
-        // }
     }
 
     void UpdateGroundedStatus()
@@ -115,6 +107,14 @@ public class playerMovement : MonoBehaviour
         healthBar.UpdateHealthBar();
         StartCoroutine(RemoveHitStatus());
     }
+
+    public void Heal()
+    {
+
+        health = Mathf.Min(100, health + 25);
+        healthBar.UpdateHealthBar();
+    }
+
     IEnumerator RemoveHitStatus()
     {
         yield return new WaitForSeconds(1);
