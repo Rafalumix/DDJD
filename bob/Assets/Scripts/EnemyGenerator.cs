@@ -72,15 +72,20 @@ public class EnemyGenerator : MonoBehaviour
                     enemiesToRemove.Add(enemy);
                 }
             }
+            
             else {
-                enemiesToRemove.Add(enemy);
+                enemiesToRemove.Add(enemy); 
             }
+            
         }
         //6
         foreach (var enemy in enemiesToRemove)
         {
-            enemies.Remove(enemy);
-            Destroy(enemy);
+            enemies.Remove(enemy); 
+            if (enemy!=null){
+                Destroy(enemy);
+            }
+            
         }
         //7
         if (farthestEnemyX < rightWall && enemies.Count < maxEnemies)

@@ -133,6 +133,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 5385970171809302981}
+  floatingPoints: {fileID: 3702226745556951172, guid: 74067c544cd0f7148adbeae85aba2d04, type: 3}
   projectile: {fileID: 2303850741035679183, guid: bcf8c908edae7fa4c8ceb043b4cf5c59, type: 3}
   playerDefaultSpeed: 3
   timeBetweenProjectiles: 5
+  health: 100
