@@ -110,9 +110,9 @@
       "dependencies": {}
     },
     "com.unity.modules.animation": {
-      "version": "file:C:/Program Files/Unity/Hub/Editor/2020.3.30f1/Editor/Data/Resources/PackageManager/BuiltInPackages/com.unity.modules.animation",
+      "version": "1.0.0",
       "depth": 0,
-      "source": "local",
+      "source": "builtin",
       "dependencies": {}
     },
     "com.unity.modules.assetbundle": {
