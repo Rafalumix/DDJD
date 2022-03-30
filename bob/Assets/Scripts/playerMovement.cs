@@ -29,6 +29,8 @@ public class playerMovement : MonoBehaviour
 
     private Rigidbody2D playerRigidbody;
 
+    private float damage = 25; 
+
 
 
     // Start is called before the first frame update
@@ -75,9 +77,13 @@ public class playerMovement : MonoBehaviour
 
     void CollectCoin(Collider2D coinCollider)
     {
-        coins++;
-        score += 10;
-        Destroy(coinCollider.gameObject);
+        //if(coinCollider.gameObject.Animator.GetBool("coinTaken")==false){
+            coins++;
+            score += 10;
+            //coinCollider.gameObject.Animator.SetBool("coinTaken",true);
+            Destroy(coinCollider.gameObject,0.5f);
+        //}
+        
     }
 
     void OnTriggerEnter2D(Collider2D collider)
@@ -148,6 +154,11 @@ public class playerMovement : MonoBehaviour
     public void RestartGame()
     {
         SceneManager.LoadScene("mainScene");
+    }
+
+    public void IncreaseScoreAndDamage(){
+        score += 100; 
+        damage += 25; 
     }
 }
 

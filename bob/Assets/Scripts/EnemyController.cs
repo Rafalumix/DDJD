@@ -8,6 +8,7 @@ public class EnemyController : MonoBehaviour
     public GameObject target; 
     private Animator anim;  
     public GameObject floatingPoints;
+    public GameObject bob; 
     private bool isAlive;
 
     public GameObject projectile;
@@ -109,14 +110,17 @@ public class EnemyController : MonoBehaviour
     public void TakeDamage (int damage)
 {
         if(isAlive==true){
-         Instantiate(floatingPoints, transform.position, Quaternion.identity); 
+        GameObject points = Instantiate(floatingPoints, transform.position, Quaternion.identity) as GameObject; 
+        points.transform.GetChild(0).GetComponent<TextMesh>().text = "250"; // = bob.damage
         health -= damage;    
         }
         
 }
 
 void Die(){
-    if (gameObject!=null){
+    if (gameObject!=null){ 
+        //playerMovement bobMovement = bob.GetComponent<playerMovement>(); 
+        //bobMovement.IncreaseScoreAndDamage(); 
        anim.SetBool("isDead", true); 
        isAlive=false; 
     }
