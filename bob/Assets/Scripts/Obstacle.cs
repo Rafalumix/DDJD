@@ -22,9 +22,9 @@ public class Obstacle : MonoBehaviour
     void Update()
     {
         if(transform.CompareTag("Obstacle"))
-        {
-            transform.RotateAround(transform.position, Vector3.forward, rotationSpeed * Time.deltaTime);
+        {    
             transform.Translate(new Vector2(-obstacleSpeed * Time.deltaTime, 0), Space.World);
         }
+        transform.RotateAround(transform.position, Vector3.forward, rotationSpeed * Time.deltaTime);
     }
 }
