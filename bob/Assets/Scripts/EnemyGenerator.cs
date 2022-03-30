@@ -62,20 +62,30 @@ public class EnemyGenerator : MonoBehaviour
         foreach (var enemy in enemies)
         {
             //3
-            float enemyX = enemy.transform.position.x;
-            //4
-            farthestEnemyX = Mathf.Max(farthestEnemyX, enemyX);
-            //5
-            if (enemyX < leftWall) 
-            {           
-                enemiesToRemove.Add(enemy);
+            if(enemy) {
+                float enemyX = enemy.transform.position.x;
+                //4
+                farthestEnemyX = Mathf.Max(farthestEnemyX, enemyX);
+                //5
+                if (enemyX < leftWall) 
+                {           
+                    enemiesToRemove.Add(enemy);
+                }
             }
+            
+            else {
+                enemiesToRemove.Add(enemy); 
+            }
+            
         }
         //6
         foreach (var enemy in enemiesToRemove)
         {
-            enemies.Remove(enemy);
-            Destroy(enemy);
+            enemies.Remove(enemy); 
+            if (enemy!=null){
+                Destroy(enemy);
+            }
+            
         }
         //7
         if (farthestEnemyX < rightWall && enemies.Count < maxEnemies)

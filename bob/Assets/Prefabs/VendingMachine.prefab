@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 3996086272086107040}
   - component: {fileID: 4475218895043786735}
   - component: {fileID: 6984151078600943383}
-  m_Layer: 0
+  - component: {fileID: -677133276085922697}
+  m_Layer: 8
   m_Name: VendingMachine
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -93,7 +94,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 3996086272086107043}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: c22ad3dd3f8a15f47aca72d2e56226dc, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -131,3 +132,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-677133276085922697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3996086272086107043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9969c7aeb5f3aa449b68e5833cfa58a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstacle: {fileID: 0}
+  forwardMovementSpeed: -5
