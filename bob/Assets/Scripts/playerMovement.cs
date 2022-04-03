@@ -29,7 +29,7 @@ public class playerMovement : MonoBehaviour
 
     private Rigidbody2D playerRigidbody;
 
-    private float damage = 25; 
+    private static float damage; 
 
 
 
@@ -38,6 +38,7 @@ public class playerMovement : MonoBehaviour
     {
         playerRigidbody = GetComponent<Rigidbody2D>();
         lastPosition = 0;
+        damage = 250; 
 
     }
 
@@ -77,12 +78,14 @@ public class playerMovement : MonoBehaviour
 
     void CollectCoin(Collider2D coinCollider)
     {
-        //if(coinCollider.gameObject.Animator.GetBool("coinTaken")==false){
+        GameObject coin = coinCollider.gameObject; 
+        coin_script script = (coin_script) coin.GetComponent(typeof(coin_script)); 
+        if(script.IsTaken()==false){
             coins++;
             score += 10;
-            //coinCollider.gameObject.Animator.SetBool("coinTaken",true);
-            Destroy(coinCollider.gameObject,0.5f);
-        //}
+            script.CoinTaken();
+            //Destroy(coinCollider.gameObject,0.5f);
+    }
         
     }
 
@@ -158,7 +161,18 @@ public class playerMovement : MonoBehaviour
 
     public void IncreaseScoreAndDamage(){
         score += 100; 
-        damage += 25; 
+        damage += 250; 
+        //Debug.Log(damage);
+    }
+
+    public string ActualDamage(){
+        if (damage<1000){
+            return damage.ToString(); 
+        } else if (damage<10000){
+            return "A LOT"; 
+        } 
+        return "A VERY LOT"; 
+        
     }
 }
 

@@ -23,6 +23,8 @@ public class EnemyController : MonoBehaviour
 
     public int health = 100; 
 
+    public playerMovement bobScript; 
+
     void Start()
     {
         isAlive = true; 
@@ -30,6 +32,7 @@ public class EnemyController : MonoBehaviour
         screenWidthInPoints = height * Camera.main.aspect;
         anim = GetComponent<Animator>(); 
         InvokeRepeating("PrepareAttack",2.0f,timeBetweenProjectiles);
+        bobScript = (playerMovement) bob.GetComponent(typeof(playerMovement)); 
     }
 
     // Update is called once per frame
@@ -111,16 +114,15 @@ public class EnemyController : MonoBehaviour
 {
         if(isAlive==true){
         GameObject points = Instantiate(floatingPoints, transform.position, Quaternion.identity) as GameObject; 
-        points.transform.GetChild(0).GetComponent<TextMesh>().text = "250"; // = bob.damage
+        points.transform.GetChild(0).GetComponent<TextMesh>().text = bobScript.ActualDamage();
         health -= damage;    
         }
         
 }
 
 void Die(){
-    if (gameObject!=null){ 
-        //playerMovement bobMovement = bob.GetComponent<playerMovement>(); 
-        //bobMovement.IncreaseScoreAndDamage(); 
+    if (gameObject!=null && isAlive==true){ 
+        bobScript.IncreaseScoreAndDamage();
        anim.SetBool("isDead", true); 
        isAlive=false; 
     }
