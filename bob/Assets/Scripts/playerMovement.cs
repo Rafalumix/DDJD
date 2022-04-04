@@ -87,7 +87,7 @@ public class playerMovement : MonoBehaviour
             CollectCoin(collider);
         }
         // Collision with obstacles!
-        else if (collider.gameObject.CompareTag("Obstacle") || collider.gameObject.CompareTag("Trap") || collider.gameObject.CompareTag("Projectile"))
+        else if (collider.gameObject.CompareTag("Trap") || collider.gameObject.CompareTag("Projectile"))
         {
             HitByObstacle(collider);
         }
@@ -96,7 +96,14 @@ public class playerMovement : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Obstacle"))
         {
-            TakeDamage(5);
+            if (AnimatorSon.GetBool("wasDamaged") == false)
+            {
+                AudioSource hitEffect = collider.gameObject.GetComponent<AudioSource>();
+                hitEffect.Play();
+                TakeDamage(5);
+                
+            }
+            
             collider.gameObject.GetComponent<Rigidbody2D>().AddForce(10*Vector2.up);
         }
     }
@@ -135,11 +142,14 @@ public class playerMovement : MonoBehaviour
         if (AnimatorSon.GetBool("wasDamaged") == false)
         {
             //We will use this one when Bob die reaching 0hp, now just for testing
+            AudioSource hitEffect = laserCollider.gameObject.GetComponent<AudioSource>();
+            hitEffect.Play();
             TakeDamage(25);
             if (laserCollider.gameObject.CompareTag("Projectile"))
             {
                 Destroy(laserCollider.gameObject);
             }
+            
             // isDead = true;
             // AnimatorSon.SetBool("isDead", true);
         }
