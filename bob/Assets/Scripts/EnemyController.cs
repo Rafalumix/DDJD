@@ -8,6 +8,7 @@ public class EnemyController : MonoBehaviour
     public GameObject target; 
     private Animator anim;  
     public GameObject floatingPoints;
+    public GameObject bob; 
     private bool isAlive;
 
     public GameObject projectile;
@@ -22,6 +23,8 @@ public class EnemyController : MonoBehaviour
 
     public int health = 100; 
 
+    public playerMovement bobScript; 
+
     void Start()
     {
         isAlive = true; 
@@ -29,6 +32,7 @@ public class EnemyController : MonoBehaviour
         screenWidthInPoints = height * Camera.main.aspect;
         anim = GetComponent<Animator>(); 
         InvokeRepeating("PrepareAttack",2.0f,timeBetweenProjectiles);
+        bobScript = (playerMovement) bob.GetComponent(typeof(playerMovement)); 
     }
 
     // Update is called once per frame
@@ -106,23 +110,23 @@ public class EnemyController : MonoBehaviour
     }
     public void TakeDamage (int damage)
     {
-        if(isAlive==true){
-        Instantiate(floatingPoints, transform.position, Quaternion.identity); 
-        health -= damage;    
+        if(isAlive==true) {
+            GameObject points = Instantiate(floatingPoints, transform.position, Quaternion.identity) as GameObject; 
+            points.transform.GetChild(0).GetComponent<TextMesh>().text = bobScript.ActualDamage();
+            health -= damage;    
         }
-            
     }
 
-    void Die() {
-        if (gameObject!=null){
+    void Die(){
+        if (gameObject!=null && isAlive==true){ 
+
+            bobScript.IncreaseScoreAndDamage();
             anim.SetBool("isDead", true); 
             isAlive=false; 
         }
-        
     }
 
-    public void DestroyObject(){
-            Destroy(gameObject);
-        }   
-    }
-
+    void DestroyObject(){
+        Destroy(gameObject);
+    }   
+}

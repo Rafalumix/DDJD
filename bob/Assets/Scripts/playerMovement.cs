@@ -32,6 +32,8 @@ public class playerMovement : MonoBehaviour
     public AudioSource healthSound;
     public AudioSource deathSound;
 
+    private static float damage; 
+
 
 
     // Start is called before the first frame update
@@ -40,6 +42,7 @@ public class playerMovement : MonoBehaviour
         playerRigidbody = GetComponent<Rigidbody2D>();
 
         lastPosition = 0;
+        damage = 25; 
 
     }
 
@@ -79,9 +82,15 @@ public class playerMovement : MonoBehaviour
 
     void CollectCoin(Collider2D coinCollider)
     {
-        coins++;
-        score += 10;
-        Destroy(coinCollider.gameObject);
+        GameObject coin = coinCollider.gameObject; 
+        coin_script script = (coin_script) coin.GetComponent(typeof(coin_script)); 
+        if(script.IsTaken()==false){
+            coins++;
+            score += 10;
+            script.CoinTaken();
+            //Destroy(coinCollider.gameObject,0.5f);
+    }
+        
     }
 
     void OnTriggerEnter2D(Collider2D collider)
@@ -171,6 +180,22 @@ public class playerMovement : MonoBehaviour
     public void RestartGame()
     {
         SceneManager.LoadScene("mainScene");
+    }
+
+    public void IncreaseScoreAndDamage(){
+        score += 100; 
+        damage += 5; 
+        //Debug.Log(damage);
+    }
+
+    public string ActualDamage(){
+        if (damage<250){
+            return damage.ToString(); 
+        } else if (damage<500){
+            return "A LOT"; 
+        } 
+        return "A VERY LOT"; 
+        
     }
 }
 
