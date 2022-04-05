@@ -10,8 +10,8 @@ public class EnemyGenerator : MonoBehaviour
 
     public int maxEnemies = 3;
 
-    public float enemyMinDistance = 5.0f;
-    public float enemyMaxDistance = 10.0f;
+    public float enemyMinDistance = 10.0f;
+    public float enemyMaxDistance = 20.0f;
 
     public float enemyMinY = -4f;
     public float enemyMaxY = 4f;
@@ -56,7 +56,7 @@ public class EnemyGenerator : MonoBehaviour
         float playerX = transform.position.x;
         float leftWall = playerX - screenWidthInPoints;
         float rightWall = playerX + screenWidthInPoints;
-        float farthestEnemyX = 0;
+        float farthestEnemyX = 10;
         //2
         List<GameObject> enemiesToRemove = new List<GameObject>();
         foreach (var enemy in enemies)

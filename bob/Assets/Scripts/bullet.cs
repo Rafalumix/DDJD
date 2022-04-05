@@ -23,8 +23,6 @@ public class bullet : MonoBehaviour
         if (bulletRigidBody.gameObject.transform.position.x - playerPos >= 15){
             Destroy(gameObject);
         }
-
-
     }
 
     void OnTriggerEnter2D (Collider2D hitInfo){
@@ -37,7 +35,5 @@ public class bullet : MonoBehaviour
             // Debug.Log(hitInfo.name); 
             Destroy(gameObject);
         }
-
-
     }
 }
