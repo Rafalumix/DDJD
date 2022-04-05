@@ -17,6 +17,8 @@ public class WindPush : MonoBehaviour
 
     public bool pickedUp = false;
 
+    public AudioSource sound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +31,7 @@ public class WindPush : MonoBehaviour
     {
         if (pickedUp && Input.GetKeyDown(KeyCode.F) && Time.time >= nextFireTime) 
         {
+            sound.Play();
             if (Push() > 0) 
             {
                 nextFireTime = Time.time + cooldownTime;

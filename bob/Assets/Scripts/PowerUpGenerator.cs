@@ -56,7 +56,7 @@ public class PowerUpGenerator : MonoBehaviour
         {
             GameObject obj = (GameObject)Instantiate(healthPack);
             float randomY = Random.Range(player.GetComponent<ObjectGenerator>().objectsMinY, player.GetComponent<ObjectGenerator>().objectsMaxY);
-            obj.transform.position = new Vector3(currentPosition + 10, randomY,0);
+            obj.transform.position = new Vector3(currentPosition + 40, randomY,0);
             powerups.Add(obj);
         }
         
@@ -73,7 +73,7 @@ public class PowerUpGenerator : MonoBehaviour
         {
             GameObject obj = (GameObject)Instantiate(MultiThreadPowerup);
             float randomY = Random.Range(player.GetComponent<ObjectGenerator>().objectsMinY, player.GetComponent<ObjectGenerator>().objectsMaxY);
-            obj.transform.position = new Vector3(currentPosition + 20, randomY,0);
+            obj.transform.position = new Vector3(currentPosition + 25, randomY,0);
             powerups.Add(obj);
         }
 

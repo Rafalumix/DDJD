@@ -8,11 +8,11 @@ public class ObjectGenerator : MonoBehaviour
     public GameObject[] availableObjects;
     public List<GameObject> objects;
 
-    public float objectsMinDistance = 5.0f;
-    public float objectsMaxDistance = 10.0f;
+    public float objectsMinDistance = 10.0f;
+    public float objectsMaxDistance = 20.0f;
 
-    public float objectsMinY = -4;
-    public float objectsMaxY = 4;
+    public float objectsMinY = -3;
+    public float objectsMaxY = 3;
 
     public float objectsMinRotation = -45.0f;
     public float objectsMaxRotation = 45.0f;
@@ -40,7 +40,7 @@ public class ObjectGenerator : MonoBehaviour
         while (true)
         {
             GenerateObjectsIfRequired();
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.75f);
         }
     }
 
@@ -51,7 +51,7 @@ public class ObjectGenerator : MonoBehaviour
         //2
         GameObject obj = (GameObject)Instantiate(availableObjects[randomIndex]);
         //3
-        float objectPositionX = lastObjectX + Random.Range(objectsMinDistance, objectsMaxDistance);
+        float objectPositionX = lastObjectX + objectsMaxDistance;
         float randomY = Random.Range(objectsMinY, objectsMaxY);
         obj.transform.position = new Vector3(objectPositionX,randomY,0); 
         //4
@@ -66,7 +66,7 @@ public class ObjectGenerator : MonoBehaviour
         float playerX = transform.position.x;
         float removeObjectsX = playerX - screenWidthInPoints;
         float addObjectX = playerX + screenWidthInPoints;
-        float farthestObjectX = 0;
+        float farthestObjectX = 10;
         //2
         List<GameObject> objectsToRemove = new List<GameObject>();
         foreach (var obj in objects)
