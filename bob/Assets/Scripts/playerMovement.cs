@@ -28,6 +28,9 @@ public class playerMovement : MonoBehaviour
     public bool isDead = false;
 
     private Rigidbody2D playerRigidbody;
+    public AudioSource hitSounds;
+    public AudioSource healthSound;
+    public AudioSource deathSound;
 
 
 
@@ -35,6 +38,7 @@ public class playerMovement : MonoBehaviour
     void Start()
     {
         playerRigidbody = GetComponent<Rigidbody2D>();
+
         lastPosition = 0;
 
     }
@@ -87,7 +91,7 @@ public class playerMovement : MonoBehaviour
             CollectCoin(collider);
         }
         // Collision with obstacles!
-        else if (collider.gameObject.CompareTag("Obstacle") || collider.gameObject.CompareTag("Trap") || collider.gameObject.CompareTag("Projectile"))
+        else if (collider.gameObject.CompareTag("Trap") || collider.gameObject.CompareTag("Projectile"))
         {
             HitByObstacle(collider);
         }
@@ -96,7 +100,13 @@ public class playerMovement : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Obstacle"))
         {
-            TakeDamage(5);
+            if (AnimatorSon.GetBool("wasDamaged") == false)
+            {
+                hitSounds.Play();
+                TakeDamage(5);
+                
+            }
+            
             collider.gameObject.GetComponent<Rigidbody2D>().AddForce(10*Vector2.up);
         }
     }
@@ -111,6 +121,9 @@ public class playerMovement : MonoBehaviour
     {
 
         health -= damage;
+        if(health<=0){
+            deathSound.Play();
+        }
         AnimatorSon.SetBool("wasDamaged", true);
         healthBar.UpdateHealthBar();
         CameraShake.Shake(0.3f, 0.05f);
@@ -120,6 +133,7 @@ public class playerMovement : MonoBehaviour
     public void Heal()
     {
 
+        healthSound.Play();
         health = Mathf.Min(100, health + 25);
         healthBar.UpdateHealthBar();
     }
@@ -135,11 +149,20 @@ public class playerMovement : MonoBehaviour
         if (AnimatorSon.GetBool("wasDamaged") == false)
         {
             //We will use this one when Bob die reaching 0hp, now just for testing
-            TakeDamage(25);
-            if (laserCollider.gameObject.CompareTag("Projectile"))
+            if (laserCollider.gameObject.CompareTag("Trap"))
+            {
+                AudioSource hitEffect = laserCollider.gameObject.GetComponent<AudioSource>();
+                hitEffect.Play();
+            }
+            else if (laserCollider.gameObject.CompareTag("Projectile"))
             {
                 Destroy(laserCollider.gameObject);
+                hitSounds.Play();
             }
+            
+            TakeDamage(25);
+            
+            
             // isDead = true;
             // AnimatorSon.SetBool("isDead", true);
         }

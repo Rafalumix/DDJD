@@ -12,6 +12,8 @@ public class MultiThreadPowerup : MonoBehaviour
     private float endTime;
     public Image imageCooldown;
 
+    public AudioSource pickSound;
+
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +32,7 @@ public class MultiThreadPowerup : MonoBehaviour
 
     public void Activate() 
     {
+        pickSound.Play();
         endTime = Time.time + effectDuration;
         isActive = true;
     }

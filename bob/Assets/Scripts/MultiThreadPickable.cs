@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class MultiThreadPickable : MonoBehaviour
 {
     
+    
     // Start is called before the first frame update
     void Start()
     {
