@@ -94,39 +94,35 @@ public class EnemyController : MonoBehaviour
 
     IEnumerator LaunchAttack(float time)
     {
-        
-           yield return new WaitForSeconds(time);
+        yield return new WaitForSeconds(time);
         if(anim.GetBool("isDead")==false){
-        GameObject newProjectile = Instantiate(projectile,target.transform.position,target.transform.rotation);
-        
-        projectiles.Add(newProjectile);
-
-        target.GetComponent<Animator>().Play("enemy1_idle");  
+            
+            GameObject newProjectile = Instantiate(projectile,target.transform.position,target.transform.rotation);
+            projectiles.Add(newProjectile);
+            target.GetComponent<Animator>().Play("enemy1_idle");  
         }
        
         
     }
     public void TakeDamage (int damage)
-{
+    {
         if(isAlive==true){
-         Instantiate(floatingPoints, transform.position, Quaternion.identity); 
+        Instantiate(floatingPoints, transform.position, Quaternion.identity); 
         health -= damage;    
         }
-        
-}
-
-void Die(){
-    if (gameObject!=null){
-       anim.SetBool("isDead", true); 
-       isAlive=false; 
+            
     }
-    
-}
 
-public void DestroyObject(){
-    //Debug.Log("Hello: " + gameObject.name);
-    Destroy(gameObject);
-}
+    void Die() {
+        if (gameObject!=null){
+            anim.SetBool("isDead", true); 
+            isAlive=false; 
+        }
+        
+    }
 
-}
+    public void DestroyObject(){
+            Destroy(gameObject);
+        }   
+    }
 
