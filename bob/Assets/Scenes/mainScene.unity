@@ -1108,7 +1108,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1878181662}
+  m_Father: {fileID: 1758756133}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1646165339
@@ -1550,7 +1550,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1007540264463304921, guid: 0613dfa130eb7604ca4879552ef3b8ab, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1007540264463304922, guid: 0613dfa130eb7604ca4879552ef3b8ab, type: 3}
       propertyPath: m_Pivot.x

@@ -86,23 +86,24 @@ public class EnemyController : MonoBehaviour
 
     void PrepareAttack()
     {
-        
         if(targetOnScreen){
             target.GetComponent<Animator>().Play("enemy1_attack");
             StartCoroutine(LaunchAttack(2));
-
         }
     }
 
     IEnumerator LaunchAttack(float time)
     {
-        yield return new WaitForSeconds(time);
-
+        
+           yield return new WaitForSeconds(time);
+        if(anim.GetBool("isDead")==false){
         GameObject newProjectile = Instantiate(projectile,target.transform.position,target.transform.rotation);
-
+        
         projectiles.Add(newProjectile);
 
-        target.GetComponent<Animator>().Play("enemy1_idle");
+        target.GetComponent<Animator>().Play("enemy1_idle");  
+        }
+       
         
     }
     public void TakeDamage (int damage)
