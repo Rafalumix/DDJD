@@ -38,7 +38,7 @@ public class playerMovement : MonoBehaviour
     {
         playerRigidbody = GetComponent<Rigidbody2D>();
         lastPosition = 0;
-        damage = 250; 
+        damage = 25; 
 
     }
 
@@ -161,14 +161,14 @@ public class playerMovement : MonoBehaviour
 
     public void IncreaseScoreAndDamage(){
         score += 100; 
-        damage += 250; 
+        damage += 5; 
         //Debug.Log(damage);
     }
 
     public string ActualDamage(){
-        if (damage<1000){
+        if (damage<250){
             return damage.ToString(); 
-        } else if (damage<10000){
+        } else if (damage<500){
             return "A LOT"; 
         } 
         return "A VERY LOT"; 
