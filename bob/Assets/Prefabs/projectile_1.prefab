@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2303850741035679181}
   - component: {fileID: 2303850741035679182}
   - component: {fileID: -1860560895739340479}
-  - component: {fileID: 3156468380462736863}
+  - component: {fileID: -6918048156839772820}
   m_Layer: 7
   m_Name: projectile_1
   m_TagString: Projectile
@@ -120,7 +120,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.18
---- !u!82 &3156468380462736863
+--- !u!82 &-6918048156839772820
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -130,8 +130,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: e9e72206db0933c4f9c444267383b549, type: 3}
-  m_PlayOnAwake: 0
+  m_audioClip: {fileID: 8300000, guid: 56fb8096e093c01448436b2789dcd870, type: 3}
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
