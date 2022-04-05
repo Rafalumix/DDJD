@@ -9,6 +9,7 @@ public class Weapon : MonoBehaviour
     public GameObject bulletPrefab; 
     public bool powerup = true;
 
+
     // Update is called once per frame
     void Update()
     {
