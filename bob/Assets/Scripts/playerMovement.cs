@@ -30,6 +30,7 @@ public class playerMovement : MonoBehaviour
     private Rigidbody2D playerRigidbody;
     public AudioSource hitSounds;
     public AudioSource healthSound;
+    public AudioSource deathSound;
 
 
 
@@ -120,6 +121,9 @@ public class playerMovement : MonoBehaviour
     {
 
         health -= damage;
+        if(health<=0){
+            deathSound.Play();
+        }
         AnimatorSon.SetBool("wasDamaged", true);
         healthBar.UpdateHealthBar();
         CameraShake.Shake(0.3f, 0.05f);
