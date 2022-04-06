@@ -33,6 +33,7 @@ public class playerMovement : MonoBehaviour
     public AudioSource deathSound;
 
     private static float damage; 
+    private HardcoreMode hm; 
 
 
 
@@ -40,9 +41,14 @@ public class playerMovement : MonoBehaviour
     void Start()
     {
         playerRigidbody = GetComponent<Rigidbody2D>();
+        hm = GetComponent<HardcoreMode>(); 
 
         lastPosition = 0;
         damage = 25; 
+        if (hm.IsHardcore() == true){
+            damage = 9999; 
+        }
+        
 
     }
 
@@ -112,6 +118,9 @@ public class playerMovement : MonoBehaviour
             if (AnimatorSon.GetBool("wasDamaged") == false)
             {
                 hitSounds.Play();
+                if(hm.IsHardcore() == true){
+                    TakeDamage(9999); 
+                }
                 TakeDamage(5);
                 
             }
@@ -141,7 +150,6 @@ public class playerMovement : MonoBehaviour
 
     public void Heal()
     {
-
         healthSound.Play();
         health = Mathf.Min(100, health + 25);
         healthBar.UpdateHealthBar();
@@ -168,9 +176,10 @@ public class playerMovement : MonoBehaviour
                 Destroy(laserCollider.gameObject);
                 hitSounds.Play();
             }
-            
-            TakeDamage(25);
-            
+            if(hm.IsHardcore() == true){
+                    TakeDamage(9999); 
+                }
+                TakeDamage(25);
             
             // isDead = true;
             // AnimatorSon.SetBool("isDead", true);
@@ -179,7 +188,7 @@ public class playerMovement : MonoBehaviour
 
     public void RestartGame()
     {
-        SceneManager.LoadScene("mainScene");
+        SceneManager.LoadScene("mainMenu");
     }
 
     public void IncreaseScoreAndDamage(){

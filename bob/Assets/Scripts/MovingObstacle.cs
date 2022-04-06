@@ -34,11 +34,16 @@ public class MovingObstacle : MonoBehaviour
     {
         if(transform.CompareTag("Projectile")) 
         {
-            if (collider.gameObject.CompareTag("Enemy") || collider.gameObject.CompareTag("Trap") || collider.gameObject.CompareTag("Projectile") )
+            if (collider.gameObject.CompareTag("Trap") || collider.gameObject.CompareTag("Projectile") )
             {   
                 GameObject enemy = collider.gameObject;
-                Destroy(enemy);
+                Destroy(enemy);  
+            }   else if (collider.gameObject.CompareTag("Enemy")){
+                    EnemyController enemy = collider.GetComponent<EnemyController>(); 
+                    if (enemy!= null){
+                     enemy.TakeDamage(9999);
             }
+            } 
         }
     }
 }

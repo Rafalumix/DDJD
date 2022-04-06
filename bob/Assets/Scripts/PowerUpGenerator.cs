@@ -12,6 +12,7 @@ public class PowerUpGenerator : MonoBehaviour
     public float distanceRespawn;
     private float screenWidthInPoints;
     private bool once = true;
+    private HardcoreMode hm; 
 
     
 
@@ -26,6 +27,8 @@ public class PowerUpGenerator : MonoBehaviour
         float rightWall = playerX + screenWidthInPoints;
         //2
         List<GameObject> PowerupsToRemove = new List<GameObject>();
+        hm = GetComponent<HardcoreMode>(); 
+
         foreach (var powerup in powerups)
         {
             //3
@@ -54,10 +57,13 @@ public class PowerUpGenerator : MonoBehaviour
         float currentPosition = this.player.transform.position.x;
         if((int)currentPosition % distanceRespawn == 0)
         {
-            GameObject obj = (GameObject)Instantiate(healthPack);
+            if (hm.IsHardcore() == false){
+               GameObject obj = (GameObject)Instantiate(healthPack);
             float randomY = Random.Range(player.GetComponent<ObjectGenerator>().objectsMinY, player.GetComponent<ObjectGenerator>().objectsMaxY);
             obj.transform.position = new Vector3(currentPosition + 40, randomY,0);
-            powerups.Add(obj);
+            powerups.Add(obj); 
+            }
+            
         }
         
         if (once && (int)currentPosition % 100 == 0 && player.gameObject.GetComponent<WindPush>().pickedUp == false)
