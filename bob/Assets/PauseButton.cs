@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement; 
 
 public class PauseButton : MonoBehaviour
 {
@@ -37,8 +38,9 @@ public class PauseButton : MonoBehaviour
         isGamePaused = true;
     }
 
-    public void QuitGame() 
+    public void MainMenu() 
     {
-        Application.Quit();
+        Resume();
+        SceneManager.LoadScene("MainMenu");
     }
 }

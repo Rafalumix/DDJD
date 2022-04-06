@@ -82,7 +82,6 @@ public class PowerUpGenerator : MonoBehaviour
             obj.transform.position = new Vector3(currentPosition + 25, randomY,0);
             powerups.Add(obj);
         }
-
     }
 
     void Start()
