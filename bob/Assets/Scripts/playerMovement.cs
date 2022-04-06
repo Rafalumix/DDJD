@@ -73,7 +73,7 @@ public class playerMovement : MonoBehaviour
         UpdateGroundedStatus();
         if (isDead == false)
         {
-            if (Input.GetButton("Jump"))
+            if (!PauseButton.isGamePaused && Input.GetButton("Jump"))
             {
                 playerRigidbody.AddForce(new Vector2(0, flight));
             }
@@ -85,8 +85,8 @@ public class playerMovement : MonoBehaviour
         if (isDead && isGrounded)
         {
             restartButton.gameObject.SetActive(true);
-            scoreText1.text = "METERS: " + totalDistance.ToString() + "\n\n\n\n\n" + "COINS: " + coins.ToString(); 
-            scoreText2.text = "KILLED ENEMIES: " + enemiesKilled.ToString() + "\n\n\n\n\n" + "SCORE: " + score.ToString(); 
+            scoreText1.text = "METERS: " + ((int)totalDistance).ToString() + "\n\n\n\n\n" + "COINS: " + coins.ToString(); 
+            scoreText2.text = "KILLED ENEMIES: " + ((int)enemiesKilled).ToString() + "\n\n\n\n\n" + "SCORE: " + ((int)score).ToString(); 
 
         }
 

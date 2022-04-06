@@ -98,7 +98,7 @@ public class PowerUpGenerator : MonoBehaviour
         while (true)
         {
             GeneratePowerupsIfRequired();
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.75f);
             
         }
     }
