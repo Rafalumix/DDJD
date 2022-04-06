@@ -3250,6 +3250,10 @@ PrefabInstance:
       propertyPath: imageCooldown
       value: 
       objectReference: {fileID: 1114777115}
+    - target: {fileID: 8279494313644274307, guid: 521db4035c3c6174f851e319d4b7248a, type: 3}
+      propertyPath: maxEnemies
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8279494313644274308, guid: 521db4035c3c6174f851e319d4b7248a, type: 3}
       propertyPath: healthBar
       value: 
@@ -3298,6 +3302,10 @@ PrefabInstance:
       propertyPath: availableBackgrounds.Array.data[6]
       value: 
       objectReference: {fileID: 2743985840988408187, guid: cc2b9f45ab6934649bd02148e51cdff7, type: 3}
+    - target: {fileID: 8279494313644274317, guid: 521db4035c3c6174f851e319d4b7248a, type: 3}
+      propertyPath: distanceRespawn
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 8279494313644274552, guid: 521db4035c3c6174f851e319d4b7248a, type: 3}
       propertyPath: m_Name
       value: Player
