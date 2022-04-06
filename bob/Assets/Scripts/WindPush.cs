@@ -19,17 +19,19 @@ public class WindPush : MonoBehaviour
 
     public AudioSource sound;
 
+    
+
     // Start is called before the first frame update
     void Start()
     {
         this.player = GameObject.FindWithTag("Player");
         // imageCooldown.enabled = false;
-        GameObject.Find("WindPush").GetComponent<Image>().enabled = false; 
+        GameObject.Find("WindPush").GetComponent<Image>().enabled = false;
     }
 
     void Update()
     {
-        if (pickedUp && Input.GetKeyDown(KeyCode.F) && Time.time >= nextFireTime) 
+        if (!PauseButton.isGamePaused && pickedUp && Input.GetKeyDown(KeyCode.F) && Time.time >= nextFireTime) 
         {
             sound.Play();
             if (Push() > 0) 

@@ -23,7 +23,7 @@ public class EnemyController : MonoBehaviour
 
     public int health = 100; 
 
-    public playerMovement bobScript; 
+    public playerMovement bobScript;  
 
     void Start()
     {
@@ -111,9 +111,16 @@ public class EnemyController : MonoBehaviour
     public void TakeDamage (int damage)
     {
         if(isAlive==true) {
-            GameObject points = Instantiate(floatingPoints, transform.position, Quaternion.identity) as GameObject; 
+            if (damage >= 100){
+                GameObject points = Instantiate(floatingPoints, transform.position, Quaternion.identity) as GameObject; 
+                points.transform.GetChild(0).GetComponent<TextMesh>().text = "A VERY LOT";
+                health -= damage; 
+            } else {
+               GameObject points = Instantiate(floatingPoints, transform.position, Quaternion.identity) as GameObject; 
             points.transform.GetChild(0).GetComponent<TextMesh>().text = bobScript.ActualDamage();
-            health -= damage;    
+            health -= damage; 
+            }
+                
         }
     }
 

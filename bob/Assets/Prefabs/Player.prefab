@@ -160,6 +160,8 @@ MonoBehaviour:
   hitSounds: {fileID: 2127040765}
   healthSound: {fileID: 2127040767}
   deathSound: {fileID: 2127040766}
+  scoreText1: {fileID: 0}
+  scoreText2: {fileID: 0}
 --- !u!50 &8279494313644274555
 Rigidbody2D:
   serializedVersion: 4
@@ -849,6 +851,7 @@ MonoBehaviour:
   imageCooldown: {fileID: 0}
   pickedUp: 0
   sound: {fileID: 2127040781}
+  popUp: {fileID: 298411126791145497, guid: 25f84fa1dca282c499ee718152db5005, type: 3}
 --- !u!114 &2127040779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -865,3 +868,4 @@ MonoBehaviour:
   effectDuration: 5
   imageCooldown: {fileID: 0}
   pickSound: {fileID: 2127040783}
+  popUp: {fileID: 2940895365376478252, guid: 0300d7a5cb70d0d438a062430f2668bb, type: 3}

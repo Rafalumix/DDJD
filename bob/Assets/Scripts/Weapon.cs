@@ -18,12 +18,10 @@ public class Weapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        if (Input.GetButtonDown("Fire1") && Time.time > nextFireTime){
+        if (!PauseButton.isGamePaused && Input.GetButtonDown("Fire1") && Time.time > nextFireTime){
             Shoot(); 
             nextFireTime = Time.time + cooldownTime;
         }
-        
     }
 
     void Shoot(){

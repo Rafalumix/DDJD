@@ -33,6 +33,10 @@ public class playerMovement : MonoBehaviour
     public AudioSource deathSound;
 
     private static float damage; 
+    private HardcoreMode hm; 
+    public UnityEngine.UI.Text scoreText1; 
+    public UnityEngine.UI.Text scoreText2; 
+    private static int enemiesKilled = 0; 
 
 
 
@@ -40,9 +44,14 @@ public class playerMovement : MonoBehaviour
     void Start()
     {
         playerRigidbody = GetComponent<Rigidbody2D>();
+        hm = GetComponent<HardcoreMode>(); 
 
         lastPosition = 0;
         damage = 25; 
+        if (hm.IsHardcore() == true){
+            damage = 9999; 
+        }
+        
 
     }
 
@@ -64,7 +73,7 @@ public class playerMovement : MonoBehaviour
         UpdateGroundedStatus();
         if (isDead == false)
         {
-            if (Input.GetButton("Jump"))
+            if (!PauseButton.isGamePaused && Input.GetButton("Jump"))
             {
                 playerRigidbody.AddForce(new Vector2(0, flight));
             }
@@ -76,6 +85,9 @@ public class playerMovement : MonoBehaviour
         if (isDead && isGrounded)
         {
             restartButton.gameObject.SetActive(true);
+            scoreText1.text = "METERS: " + ((int)totalDistance).ToString() + "\n\n\n\n\n" + "COINS: " + coins.ToString(); 
+            scoreText2.text = "KILLED ENEMIES: " + ((int)enemiesKilled).ToString() + "\n\n\n\n\n" + "SCORE: " + ((int)score).ToString(); 
+
         }
 
     }
@@ -112,6 +124,9 @@ public class playerMovement : MonoBehaviour
             if (AnimatorSon.GetBool("wasDamaged") == false)
             {
                 hitSounds.Play();
+                if(hm.IsHardcore() == true){
+                    TakeDamage(9999); 
+                }
                 TakeDamage(5);
                 
             }
@@ -141,7 +156,6 @@ public class playerMovement : MonoBehaviour
 
     public void Heal()
     {
-
         healthSound.Play();
         health = Mathf.Min(100, health + 25);
         healthBar.UpdateHealthBar();
@@ -168,9 +182,10 @@ public class playerMovement : MonoBehaviour
                 Destroy(laserCollider.gameObject);
                 hitSounds.Play();
             }
-            
-            TakeDamage(25);
-            
+            if(hm.IsHardcore() == true){
+                    TakeDamage(9999); 
+                }
+                TakeDamage(25);
             
             // isDead = true;
             // AnimatorSon.SetBool("isDead", true);
@@ -179,12 +194,14 @@ public class playerMovement : MonoBehaviour
 
     public void RestartGame()
     {
-        SceneManager.LoadScene("mainScene");
+        SceneManager.LoadScene("mainMenu");
     }
 
     public void IncreaseScoreAndDamage(){
+
         score += 100; 
         damage += 5; 
+        enemiesKilled ++; 
         //Debug.Log(damage);
     }
 
