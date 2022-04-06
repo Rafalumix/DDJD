@@ -19,8 +19,8 @@ public class coin_script : MonoBehaviour
         
     }
     public void DestroyObject(){
-    Destroy(gameObject);
-}
+        Destroy(gameObject);
+    }
 
     public void CoinTaken(){
         anim.SetBool("coinTaken", true);  
@@ -31,7 +31,10 @@ public class coin_script : MonoBehaviour
     }
 
     public void coinPickupSound(){
-        pickupSound.Play();
+        if(pickupSound.enabled && pickupSound.gameObject.activeInHierarchy)
+        {
+            pickupSound.Play();
+        }
     }
 
 }
