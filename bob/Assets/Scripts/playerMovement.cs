@@ -34,6 +34,9 @@ public class playerMovement : MonoBehaviour
 
     private static float damage; 
     private HardcoreMode hm; 
+    public UnityEngine.UI.Text scoreText1; 
+    public UnityEngine.UI.Text scoreText2; 
+    private static int enemiesKilled = 0; 
 
 
 
@@ -82,6 +85,9 @@ public class playerMovement : MonoBehaviour
         if (isDead && isGrounded)
         {
             restartButton.gameObject.SetActive(true);
+            scoreText1.text = "METERS: " + totalDistance.ToString() + "\n\n\n\n\n" + "COINS: " + coins.ToString(); 
+            scoreText2.text = "KILLED ENEMIES: " + enemiesKilled.ToString() + "\n\n\n\n\n" + "SCORE: " + score.ToString(); 
+
         }
 
     }
@@ -192,8 +198,10 @@ public class playerMovement : MonoBehaviour
     }
 
     public void IncreaseScoreAndDamage(){
+
         score += 100; 
         damage += 5; 
+        enemiesKilled ++; 
         //Debug.Log(damage);
     }
 
