@@ -185,7 +185,7 @@ public class playerMovement : MonoBehaviour
             if(hm.IsHardcore() == true){
                     TakeDamage(9999); 
                 }
-                TakeDamage(25);
+                TakeDamage(30);
             
             // isDead = true;
             // AnimatorSon.SetBool("isDead", true);

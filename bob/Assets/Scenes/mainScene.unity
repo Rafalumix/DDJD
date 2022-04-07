@@ -3250,6 +3250,10 @@ PrefabInstance:
       propertyPath: imageCooldown
       value: 
       objectReference: {fileID: 1114777115}
+    - target: {fileID: 8279494313644274307, guid: 521db4035c3c6174f851e319d4b7248a, type: 3}
+      propertyPath: maxEnemies
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8279494313644274308, guid: 521db4035c3c6174f851e319d4b7248a, type: 3}
       propertyPath: healthBar
       value: 
@@ -3298,6 +3302,10 @@ PrefabInstance:
       propertyPath: availableBackgrounds.Array.data[6]
       value: 
       objectReference: {fileID: 2743985840988408187, guid: cc2b9f45ab6934649bd02148e51cdff7, type: 3}
+    - target: {fileID: 8279494313644274317, guid: 521db4035c3c6174f851e319d4b7248a, type: 3}
+      propertyPath: distanceRespawn
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 8279494313644274552, guid: 521db4035c3c6174f851e319d4b7248a, type: 3}
       propertyPath: m_Name
       value: Player
@@ -3307,12 +3315,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8279494313644274554, guid: 521db4035c3c6174f851e319d4b7248a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.3839257
+      objectReference: {fileID: 0}
+    - target: {fileID: 8279494313644274554, guid: 521db4035c3c6174f851e319d4b7248a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 4.034147
+      objectReference: {fileID: 0}
+    - target: {fileID: 8279494313644274554, guid: 521db4035c3c6174f851e319d4b7248a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.7924
+      value: -1.5316
       objectReference: {fileID: 0}
     - target: {fileID: 8279494313644274554, guid: 521db4035c3c6174f851e319d4b7248a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.99
+      value: 1.2781
       objectReference: {fileID: 0}
     - target: {fileID: 8279494313644274554, guid: 521db4035c3c6174f851e319d4b7248a, type: 3}
       propertyPath: m_LocalPosition.z

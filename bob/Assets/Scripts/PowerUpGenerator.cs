@@ -66,7 +66,7 @@ public class PowerUpGenerator : MonoBehaviour
             
         }
         
-        if (once && (int)currentPosition % 100 == 0 && player.gameObject.GetComponent<WindPush>().pickedUp == false)
+        if (once && (int)currentPosition % 75 == 0 && player.gameObject.GetComponent<WindPush>().pickedUp == false)
         {
             GameObject obj = (GameObject)Instantiate(WindPowerup);
             float randomY = Random.Range(player.GetComponent<ObjectGenerator>().objectsMinY, player.GetComponent<ObjectGenerator>().objectsMaxY);
