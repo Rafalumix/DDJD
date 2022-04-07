@@ -10,7 +10,7 @@ public class bullet : MonoBehaviour
     private Rigidbody2D bulletRigidBody; 
     private Animator anim; 
     private AudioSource bulletSplash;
-     private HardcoreMode hm; 
+    private HardcoreMode hm;
 
     // Start is called before the first frame update
     void Start()

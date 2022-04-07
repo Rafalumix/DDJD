@@ -5,12 +5,19 @@ using UnityEngine.SceneManagement;
 
 public class MenuScript : MonoBehaviour
 {
+    [SerializeField]
+    GameObject exitButton;
+
+    void Start() {
+        #if (!UNITY_WEBGL)
+            exitButton.SetActive(true);
+        #endif
+    }
     public void PlayGame(){
         SceneManager.LoadScene("mainScene"); 
     }
 
     public void QuitGame(){
-        Debug.Log("QUIT"); 
         Application.Quit(); 
     }
 }
