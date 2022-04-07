@@ -63,7 +63,7 @@ public class playerMovement : MonoBehaviour
         lastPosition = transform.position.x;
         score += distance;
         ScoreLabel.text = "Score: " + ((uint)score).ToString();
-        coinsCollectedLabel.text = coins.ToString() + " ECTS";
+        coinsCollectedLabel.text = "ECTS: " + coins.ToString();
         UpdateGroundedStatus();
 
     }
