@@ -8,7 +8,7 @@ public class EnemyGenerator : MonoBehaviour
     public GameObject[] availableEnemies;
     private List<GameObject> enemies = new List<GameObject>();
 
-    public int maxEnemies = 5;
+    private int maxEnemies = 4;
 
     public float enemyMinDistance = 10.0f;
     public float enemyMaxDistance = 20.0f;
@@ -104,7 +104,7 @@ public class EnemyGenerator : MonoBehaviour
         while (true)
         {
             GenerateEnemiesIfRequired();
-            yield return new WaitForSeconds(0.25f);
+            yield return new WaitForSeconds(0.75f);
         }
     }
 

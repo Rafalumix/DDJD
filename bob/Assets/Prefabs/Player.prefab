@@ -339,7 +339,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   availableEnemies:
   - {fileID: 5385970171809302981, guid: 78fb282807386bf4d80f894693d725d3, type: 3}
-  maxEnemies: 3
+  maxEnemies: 4
   enemyMinDistance: 5
   enemyMaxDistance: 10
   enemyMinY: -4
