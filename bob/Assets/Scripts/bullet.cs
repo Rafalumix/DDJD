@@ -9,7 +9,8 @@ public class bullet : MonoBehaviour
     public int damage = 25; 
     private Rigidbody2D bulletRigidBody; 
     private Animator anim; 
-    private AudioSource bulletSplash; 
+    private AudioSource bulletSplash;
+    private HardcoreMode hm;
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +19,10 @@ public class bullet : MonoBehaviour
         bulletSplash = GetComponent<AudioSource>(); 
         anim = GetComponent<Animator>(); 
         bulletRigidBody.velocity = transform.right * speed; 
+        hm = GetComponent<HardcoreMode>(); 
+        if (hm.IsHardcore()==true){
+            damage = 100; 
+        }
     }
 
     void FixedUpdate() 
@@ -35,7 +40,7 @@ public class bullet : MonoBehaviour
             bulletDestroyedSound(); 
             EnemyController enemy = hitInfo.GetComponent<EnemyController>(); 
             if (enemy!= null){
-                enemy.TakeDamage(damage); 
+                   enemy.TakeDamage(damage);  
             }
             anim.SetBool("Explosion", true); 
             // Debug.Log(hitInfo.name); 

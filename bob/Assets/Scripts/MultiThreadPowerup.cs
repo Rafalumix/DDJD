@@ -13,11 +13,13 @@ public class MultiThreadPowerup : MonoBehaviour
     public Image imageCooldown;
 
     public AudioSource pickSound;
+    public Text popUp;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        
 
     }
 
@@ -32,6 +34,9 @@ public class MultiThreadPowerup : MonoBehaviour
 
     public void Activate() 
     {
+        GameObject canvas = GameObject.Find("Canvas");
+        Text obj = Instantiate(popUp, canvas.transform);
+        Destroy(obj, 2.5f);
         pickSound.Play();
         endTime = Time.time + effectDuration;
         isActive = true;

@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 8279494313644274309}
   - component: {fileID: 8279494313644274310}
   - component: {fileID: 8279494313644274311}
+  - component: {fileID: 648039514048432173}
   - component: {fileID: 8279494313644274304}
   - component: {fileID: 8279494313644274306}
   - component: {fileID: 8279494313644274305}
@@ -160,6 +161,8 @@ MonoBehaviour:
   hitSounds: {fileID: 2127040765}
   healthSound: {fileID: 2127040767}
   deathSound: {fileID: 2127040766}
+  scoreText1: {fileID: 0}
+  scoreText2: {fileID: 0}
 --- !u!50 &8279494313644274555
 Rigidbody2D:
   serializedVersion: 4
@@ -242,11 +245,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   availableObjects:
   - {fileID: 4884950061397683640, guid: cb448c6910467614f9fac1a9ccd60fc5, type: 3}
-  - {fileID: 477221677230095913, guid: 88f050cff66d8e241849b8ac96a1a3a1, type: 3}
   - {fileID: 3996086272086107043, guid: a0ddc4f28067b124cb8a0498c5846e86, type: 3}
-  - {fileID: 7839864593442781899, guid: e0e004dfe8739834896d5492d794387e, type: 3}
   - {fileID: 6393371384161342118, guid: 370eba8893c262e40a700e72ce57859b, type: 3}
   - {fileID: 6525949641534438924, guid: c6f842bb7a0744d498eef613a309f23f, type: 3}
+  objects: []
+  objectsMinDistance: 5
+  objectsMaxDistance: 10
+  objectsMinY: -3.5
+  objectsMaxY: 3.5
+  objectsMinRotation: -45
+  objectsMaxRotation: 45
+--- !u!114 &648039514048432173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8279494313644274552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1736c3da584bc2f429923f0bd5cfd926, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  availableObjects:
+  - {fileID: 7839864593442781899, guid: e0e004dfe8739834896d5492d794387e, type: 3}
+  - {fileID: 3996086272086107043, guid: a0ddc4f28067b124cb8a0498c5846e86, type: 3}
+  - {fileID: 477221677230095913, guid: 88f050cff66d8e241849b8ac96a1a3a1, type: 3}
   objects: []
   objectsMinDistance: 5
   objectsMaxDistance: 10
@@ -315,7 +339,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   availableEnemies:
   - {fileID: 5385970171809302981, guid: 78fb282807386bf4d80f894693d725d3, type: 3}
-  maxEnemies: 3
+  maxEnemies: 4
   enemyMinDistance: 5
   enemyMaxDistance: 10
   enemyMinY: -4
@@ -865,3 +889,4 @@ MonoBehaviour:
   effectDuration: 5
   imageCooldown: {fileID: 0}
   pickSound: {fileID: 2127040783}
+  popUp: {fileID: 2940895365376478252, guid: 0300d7a5cb70d0d438a062430f2668bb, type: 3}

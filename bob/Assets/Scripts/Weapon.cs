@@ -7,14 +7,20 @@ public class Weapon : MonoBehaviour
 
     public Transform firePoint; 
     public GameObject bulletPrefab; 
+
+    private float cooldownTime = 0.3f;
+
+    private float nextFireTime = 0.0f;
     public bool powerup = true;
+
 
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1")){
+        if (!PauseButton.isGamePaused && Input.GetButtonDown("Fire1") && Time.time > nextFireTime){
             Shoot(); 
+            nextFireTime = Time.time + cooldownTime;
         }
     }
 
